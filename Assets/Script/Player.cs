@@ -20,9 +20,10 @@ using UnityEngine.AI;
         private float _hp;
 
         private Enemy[] _enemies;
+        private Enemy _targetEnemy;
         private Exit _exit;
-        
-        enum States
+
+        private enum States
         {
             Idle, Walk, Run, Attack, Win, Die
         }
@@ -76,6 +77,15 @@ using UnityEngine.AI;
                     {
                         ChangeState(States.Walk);
                     }
+                    else
+                    {
+                        var s = _targetEnemy.transform.position - transform.position;
+                        
+                        agent.velocity = s * Time.smoothDeltaTime;
+                        // agent.velocity = s * 1f;
+
+                        transform.forward = new Vector3(s.x, 0, s.z);
+                    }
                     break;
                 case States.Win:
                     break;
@@ -92,6 +102,7 @@ using UnityEngine.AI;
             {
                 if (Vector3.Distance(e.transform.position, transform.position) < AttackRange)
                 {
+                    _targetEnemy = e;
                     ChangeState(States.Attack);
                     return true;
                 }
