@@ -79,10 +79,7 @@ using UnityEngine.AI;
                     }
                     else
                     {
-                        var playerMove = _targetKill.transform.position - transform.position;
-                        
-                        agent.velocity = playerMove * Time.deltaTime;
-                        transform.forward = new Vector3(playerMove.x, 0, playerMove.z);
+                        KillEnemy();
                     }
                     break;
                 case States.Win:
@@ -93,7 +90,6 @@ using UnityEngine.AI;
                     throw new ArgumentOutOfRangeException();
             }
         }
-
         private bool TryAttack()
         {
             foreach (var e in _enemies)
@@ -107,6 +103,16 @@ using UnityEngine.AI;
             }
             return false;
         }
+        
+        private void KillEnemy()
+        {
+            var playerMove = _targetKill.transform.position - transform.position;
+                        
+            transform.position += playerMove.normalized * Time.deltaTime * 2;
+            transform.forward = playerMove;
+            //agent.velocity = Vector3.zero;
+        }
+        
         private void ChangeState(States newState)
         {
             if (newState == _state) return;
