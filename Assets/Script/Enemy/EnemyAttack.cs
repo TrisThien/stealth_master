@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class EnemyAttack : EnemyState
+public class EnemyAttack : IEnemyState
 {
     private readonly Player _player = new Player();
     private const float AttackRange = 1f;
 
-    public EnemyState ChangeState(Enemy enemy)
+    public IEnemyState ChangeState(Enemy enemy)
     {
         Attack(enemy);
         if (!IsNearPlayer(enemy)) return enemy.EnemyChase;

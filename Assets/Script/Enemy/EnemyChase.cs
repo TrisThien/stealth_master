@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyChase : EnemyState
+public class EnemyChase : IEnemyState
 {
     private readonly Player _player = new Player();
     private const float ChaseRange = 3f;
     private const float AttackRange = 1f;
 
-    public EnemyState ChangeState(Enemy enemy)
+    public IEnemyState ChangeState(Enemy enemy)
     {
         if (SeePlayer(enemy)) Chase(enemy);
         else if (IsNearPlayer(enemy)) return enemy.EnemyAttack;

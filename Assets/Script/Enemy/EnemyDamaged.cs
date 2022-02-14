@@ -1,6 +1,6 @@
-public class EnemyDamaged : EnemyState
+public class EnemyDamaged : IEnemyState
 {
-    public EnemyState ChangeState(Enemy enemy)
+    public IEnemyState ChangeState(Enemy enemy)
     {
         throw new System.NotImplementedException();
         Damaged(enemy);

@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class EnemyPatrol : EnemyState
+public class EnemyPatrol : IEnemyState
 {
     private readonly Player _player = new Player();
     private const float EnemyView = 3f;
-    public EnemyState ChangeState(Enemy enemy)
+    public IEnemyState ChangeState(Enemy enemy)
     {
         if(!SeePlayer(enemy)) Patrol(enemy);
         return enemy.EnemyChase;

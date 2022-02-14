@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public readonly EnemyAttack EnemyAttack = new EnemyAttack();
     public readonly EnemyDamaged EnemyDamaged = new EnemyDamaged();
     
-    private EnemyState _currentEnemyStates;
+    private IEnemyState _currentEnemyStates;
     private void Start()
     {
         _currentEnemyStates = EnemyPatrol;
