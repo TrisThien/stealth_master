@@ -1,13 +1,6 @@
-public class EnemyDamaged : IEnemyState
+namespace Funzilla
 {
-    public IEnemyState ChangeState(Enemy enemy)
-    {
-        throw new System.NotImplementedException();
-        Damaged(enemy);
-    }
-
-    private void Damaged(Enemy state)
-    {
-        // TODO
-    }
+	internal class EnemyDamaged : EnemyStates
+	{
+	}
 }

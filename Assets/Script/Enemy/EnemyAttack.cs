@@ -1,24 +1,32 @@
-using UnityEngine;
-
-public class EnemyAttack : IEnemyState
+namespace Funzilla
 {
-    private readonly Player _player = new Player();
-    private const float AttackRange = 1f;
+	internal class EnemyAttack : EnemyStates
+	{
+		internal void Enter()
+		{
+			// TODO: Code dung chung
+			AnimateAttack();
+		}
 
-    public IEnemyState ChangeState(Enemy enemy)
-    {
-        Attack(enemy);
-        if (!IsNearPlayer(enemy)) return enemy.EnemyChase;
-        return null;
-    }
+		internal void Exit()
+		{
+		
+		}
 
-    private void Attack(Enemy enemy)
-    {
-        // TODO
-    }
+		internal void Update()
+		{
+		
+		}
 
-    private bool IsNearPlayer(Enemy enemy)
-    {
-        return Vector3.Distance(enemy.transform.position, _player.transform.position) <= AttackRange;
-    }
+		internal void OnAttackAnimationFinised()
+		{
+			
+		}
+
+		internal void AnimateAttack()
+		{
+			
+		}
+	}	
 }
+
