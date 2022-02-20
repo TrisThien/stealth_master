@@ -1,13 +1,12 @@
 using UnityEngine;
 
-namespace Funzilla
+
+internal class PatrolLocations : MonoBehaviour
 {
-	public class PatrolLocations : MonoBehaviour
+	private Vector3 _location;
+	private void Start()
 	{
-		private Vector3 _location;
-		private void Start()
-		{
-			_location = transform.position;
-		}
+		_location = transform.position;
 	}
 }
+

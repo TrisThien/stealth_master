@@ -1,27 +1,20 @@
 using UnityEngine;
 
-namespace Funzilla
+
+internal abstract class EnemyStates: MonoBehaviour
 {
-	internal class EnemyStates: MonoBehaviour
+	protected Enemy Enemy;
+
+	internal void Init(Enemy enemy)
 	{
-		protected Enemy Enemy;
+		Enemy = enemy;
+	}
 
-		internal void Init(Enemy enemy)
-		{
-			Enemy = enemy;
-		}
+	internal abstract void BeginState();
 
-		internal void Begin()
-		{
-		}
+	internal abstract void UpdateState();
 
-		internal void UpdateState()
-		{
-		}
+	internal abstract void OutState();
+}    
 
-		internal void Out()
-		{
-		}
-	}    
-}
 
