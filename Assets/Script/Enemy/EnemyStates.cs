@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-internal abstract class EnemyStates: MonoBehaviour
+internal abstract class EnemyStates
 {
 	protected Enemy Enemy;
 
