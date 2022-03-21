@@ -17,9 +17,18 @@ internal class Enemy : MonoBehaviour
 
 	internal NavMeshAgent Agent => agent;
 
+	private Rigidbody[] _rgbodies;
+	private void Awake()
+	{
+		_rgbodies = GetComponentsInChildren<Rigidbody>();
+		foreach (var _rgbody in _rgbodies)
+		{
+			_rgbody.isKinematic = true;
+		}
+	}
+
 	protected void Start()
 	{
-		BeginAttackEnemyState();
 		var locations = new List<Vector3>();
 		var patrolLocations = GetComponentsInChildren<PatrolLocations>();
 		locations.Add(transform.position);
@@ -34,12 +43,7 @@ internal class Enemy : MonoBehaviour
 		ChangeState(EnemyPatrol);
 	}
 
-    protected void BeginAttackEnemyState()
-    {
-
-    }
-
-    private void Update()
+	private void Update()
 	{
 		_currentEnemyState?.UpdateState();
 	}
@@ -53,5 +57,18 @@ internal class Enemy : MonoBehaviour
 		_currentEnemyState = newState;
 			
 		_currentEnemyState?.BeginState();
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("PlayerWeapon"))
+		{
+			// this.gameObject.SetActive(false);
+			foreach (var _rgbody in _rgbodies)
+			{
+				_rgbody.isKinematic = false;
+			}
+			ChangeState(EnemyDamage);
+		}
 	}
 }
