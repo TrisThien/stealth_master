@@ -111,13 +111,13 @@ internal class EnemyPatrol : EnemyStates
 		switch (_currentPatrolState)
 		{
 			case PatrolStates.Walk:
+				Enemy.EnemyCharacter.AnimatePistolWalk();
 				Enemy.Agent.SetDestination(_locations[_locationNo]);
 				break;
 			case PatrolStates.Watch:
-			{
+				Enemy.EnemyCharacter.AnimateLooking();
 				EnemyTurn();
 				break;
-			}
 			default:
 				throw new ArgumentOutOfRangeException();
 		}

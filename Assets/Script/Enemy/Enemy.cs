@@ -2,9 +2,17 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 internal class Enemy : MonoBehaviour
 {
+	[SerializeField] private Animator animator;
+
+	[SerializeField] private Character enemyCharacter;
+	internal Character EnemyCharacter => enemyCharacter;
+
+	internal bool Attackable = true;
+	
 	internal EnemyPatrol EnemyPatrol = new EnemyPatrol();
 	internal EnemyChase EnemyChase = new EnemyChase();
 	internal EnemyDamaged EnemyDamage = new EnemyDamaged();
@@ -27,7 +35,7 @@ internal class Enemy : MonoBehaviour
 		}
 	}
 
-	protected void Start()
+	private void Start()
 	{
 		var locations = new List<Vector3>();
 		var patrolLocations = GetComponentsInChildren<PatrolLocations>();
@@ -64,6 +72,9 @@ internal class Enemy : MonoBehaviour
 		if (other.gameObject.CompareTag("PlayerWeapon"))
 		{
 			// this.gameObject.SetActive(false);
+			Attackable = false;
+			animator.enabled = false;
+
 			foreach (var _rgbody in _rgbodies)
 			{
 				_rgbody.isKinematic = false;
